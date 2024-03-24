@@ -1,8 +1,8 @@
-import express from 'express';
-import productRoutes from './routes/products.js';
-import mongoose from 'mongoose';
+import express from "express";
+import productRoutes from "./routes/products.js";
+import mongoose from "mongoose";
 import config from "../config.js";
-import bodyParser from 'body-parser';
+import bodyParser from "body-parser";
 
 // const connectToDB = async () => {
 //     try {
@@ -16,10 +16,17 @@ import bodyParser from 'body-parser';
 const app = express();
 
 //middleware
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/products', productRoutes);
+app.use("/products", productRoutes);
+
+app.get("/", (_, res) => {
+  res.json({
+    status: true,
+    message: "Get request called",
+  });
+});
 
 // await connectToDB();
 
